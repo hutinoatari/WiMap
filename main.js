@@ -53,7 +53,7 @@ const drawCurrentLocation = () => {
 reloadButton.onclick = () => drawCurrentLocation();
 
 const downloadMap = () => {
-    const dataURI = canvas.toDataURL("image/jpeg", 0.5);
+    const dataURI = canvas.toDataURL("image/jpeg");
     const img = document.createElement("a");
     img.href = `data:img/jpeg;${dataURI}`;
     img.download = `iMapImage${Date.now()}.jpg`;
