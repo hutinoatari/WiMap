@@ -17,7 +17,7 @@ const downloadButton = document.getElementById("downloadButton");
 const japanMapImage = new Image();
 japanMapImage.src = "japanMap.jpg";
 
-const LaLo2XY = (la, lo) => {
+const LoLa2XY = (lo, la) => {
     const x = (la - mapConfig.xl) / (mapConfig.xr - mapConfig.xl) * mapConfig.w;
     const y = -(lo - mapConfig.yu) / (mapConfig.yu - mapConfig.yd) * mapConfig.h;
     return {
@@ -43,7 +43,7 @@ const drawCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
         const la = position.coords.latitude;
         const lo = position.coords.longitude;
-        const {x, y} = LaLo2XY(la, lo);
+        const {x, y} = LoLa2XY(la, lo);
         context.fillStyle = "red";
         context.beginPath();
         context.arc(x, y, 2, 0, 2*Math.PI);
