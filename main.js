@@ -21,8 +21,8 @@ const LoLa2XY = (lo, la) => {
     const x = (la - mapConfig.xl) / (mapConfig.xr - mapConfig.xl) * mapConfig.w;
     const y = -(lo - mapConfig.yu) / (mapConfig.yu - mapConfig.yd) * mapConfig.h;
     return {
-        x: Math.floor(x),
-        y: Math.floor(y),
+        x: Math.round(x),
+        y: Math.round(y),
     }
 }
 
