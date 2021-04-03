@@ -17,7 +17,7 @@ const downloadButton = document.getElementById("downloadButton");
 const japanMapImage = new Image();
 japanMapImage.src = "japanMap.jpg";
 
-const LonLatToXY = (longitude, latitude) => {
+const lonLatToXY = (longitude, latitude) => {
     const x = (longitude - mapConfig.leftLongitude) / (mapConfig.rightLongitude - mapConfig.leftLongitude) * mapConfig.width;
     const y = -(latitude - mapConfig.topLatitude) / (mapConfig.topLatitude - mapConfig.underLatitude) * mapConfig.height;
     return {
@@ -28,6 +28,11 @@ const LonLatToXY = (longitude, latitude) => {
 
 const drawCurrentLocation = () => {
     context.drawImage(japanMapImage, 0, 0);
+
+    if(!"geolocation" in navigator){
+        alert("このブラウザは未対応です。");
+        return;
+    }
 
     context.fillStyle = "black";
     context.font = "20px monospace";
@@ -44,11 +49,16 @@ const drawCurrentLocation = () => {
         const coordinates = position.coords;
         const latitude = coordinates.latitude;
         const longitude = coordinates.longitude;
-        const {x, y} = LonLatToXY(longitude, latitude);
+        const {x, y} = lonLatToXY(longitude, latitude);
         context.fillStyle = "red";
         context.beginPath();
         context.arc(x, y, 2, 0, 2*Math.PI);
         context.fill();
+    }, (err) => {
+        alert("データの取得に失敗しました。");
+    }, {
+        timeout: 5000,
+        maximumAge: 0,
     });
 }
 reloadButton.onclick = () => drawCurrentLocation();
