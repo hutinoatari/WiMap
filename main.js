@@ -1,25 +1,25 @@
 const mapConfig = {
-    xl: 127.5,
-    xr: 147.5,
-    yu: 48.3,
-    yd: 28.3,
+    leftLongitude: 127.5,
+    rightLongitude: 147.5,
+    topLatitude: 48.3,
+    underLatitude: 28.3,
 
-    w: 120,
-    h: 120,
+    width: 120,
+    height: 120,
 }
 
 const canvas = document.getElementById("screen");
-canvas.width = mapConfig.w;
-canvas.height = mapConfig.h;
+canvas.width = mapConfig.width;
+canvas.height = mapConfig.height;
 const context = canvas.getContext("2d");
 const reloadButton = document.getElementById("reloadButton");
 const downloadButton = document.getElementById("downloadButton");
 const japanMapImage = new Image();
 japanMapImage.src = "japanMap.jpg";
 
-const LoLa2XY = (lo, la) => {
-    const x = (la - mapConfig.xl) / (mapConfig.xr - mapConfig.xl) * mapConfig.w;
-    const y = -(lo - mapConfig.yu) / (mapConfig.yu - mapConfig.yd) * mapConfig.h;
+const LonLatToXY = (longitude, latitude) => {
+    const x = (longitude - mapConfig.leftLongitude) / (mapConfig.rightLongitude - mapConfig.leftLongitude) * mapConfig.width;
+    const y = -(latitude - mapConfig.topLatitude) / (mapConfig.topLatitude - mapConfig.underLatitude) * mapConfig.height;
     return {
         x: Math.round(x),
         y: Math.round(y),
@@ -38,12 +38,13 @@ const drawCurrentLocation = () => {
     context.font = "10px monospace";
     context.textAlign = "right";
     context.textBaseline = "bottom";
-    context.fillText("(C)2021 淵野アタリ", mapConfig.w-5, mapConfig.h-5);
+    context.fillText("(C)2021 淵野アタリ", mapConfig.width-5, mapConfig.height-5);
 
     navigator.geolocation.getCurrentPosition((position) => {
-        const la = position.coords.latitude;
-        const lo = position.coords.longitude;
-        const {x, y} = LoLa2XY(la, lo);
+        const coordinates = position.coords;
+        const latitude = coordinates.latitude;
+        const longitude = coordinates.longitude;
+        const {x, y} = LonLatToXY(longitude, latitude);
         context.fillStyle = "red";
         context.beginPath();
         context.arc(x, y, 2, 0, 2*Math.PI);
