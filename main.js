@@ -26,7 +26,7 @@ const lonLatToXY = (longitude, latitude) => {
     }
 }
 
-const drawCurrentLocation = () => {
+const drawCurrentPosition = () => {
     context.drawImage(japanMapImage, 0, 0);
 
     if(!"geolocation" in navigator){
@@ -34,23 +34,12 @@ const drawCurrentLocation = () => {
         return;
     }
 
-    context.fillStyle = "black";
-    context.font = "20px monospace";
-    context.textAlign = "left";
-    context.textBaseline = "top";
-    context.fillText("iMap", 10, 15);
-
-    context.font = "10px monospace";
-    context.textAlign = "right";
-    context.textBaseline = "bottom";
-    context.fillText("(C)2021 淵野アタリ", mapConfig.width-5, mapConfig.height-5);
-
     navigator.geolocation.getCurrentPosition((position) => {
         const coordinates = position.coords;
         const latitude = coordinates.latitude;
         const longitude = coordinates.longitude;
         const {x, y} = lonLatToXY(longitude, latitude);
-        context.fillStyle = "red";
+        context.fillStyle = "orangered";
         context.beginPath();
         context.arc(x, y, 2, 0, 2*Math.PI);
         context.fill();
@@ -61,10 +50,10 @@ const drawCurrentLocation = () => {
         maximumAge: 0,
     });
 }
-reloadButton.onclick = () => drawCurrentLocation();
+reloadButton.onclick = () => drawCurrentPosition();
 
 const downloadMap = () => {
-    const dataURI = canvas.toDataURL("image/jpeg");
+    const dataURI = canvas.toDataURL("image/jpeg", 1);
     const img = document.createElement("a");
     img.href = `data:img/jpeg;${dataURI}`;
     img.download = `iMapImage${Date.now()}.jpg`;
@@ -72,4 +61,4 @@ const downloadMap = () => {
 }
 downloadButton.onclick = () => downloadMap();
 
-japanMapImage.onload = () => drawCurrentLocation();
+japanMapImage.onload = () => drawCurrentPosition();
