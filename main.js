@@ -18,12 +18,9 @@ const japanMapImage = new Image();
 japanMapImage.src = "japanMap.jpg";
 
 const lonLatToXY = (longitude, latitude) => {
-    const x = (longitude - mapConfig.leftLongitude) / (mapConfig.rightLongitude - mapConfig.leftLongitude) * mapConfig.width;
-    const y = -(latitude - mapConfig.topLatitude) / (mapConfig.topLatitude - mapConfig.underLatitude) * mapConfig.height;
-    return {
-        x: Math.round(x),
-        y: Math.round(y),
-    }
+    const x = Math.round((longitude - mapConfig.leftLongitude) / (mapConfig.rightLongitude - mapConfig.leftLongitude) * mapConfig.width);
+    const y = Math.round(-(latitude - mapConfig.topLatitude) / (mapConfig.topLatitude - mapConfig.underLatitude) * mapConfig.height);
+    return [x, y];
 }
 
 const drawCurrentPosition = () => {
@@ -38,7 +35,7 @@ const drawCurrentPosition = () => {
         const coordinates = position.coords;
         const latitude = coordinates.latitude;
         const longitude = coordinates.longitude;
-        const {x, y} = lonLatToXY(longitude, latitude);
+        const [x, y] = lonLatToXY(longitude, latitude);
         context.fillStyle = "orangered";
         context.beginPath();
         context.arc(x, y, 2, 0, 2*Math.PI);
