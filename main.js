@@ -37,9 +37,7 @@ const drawCurrentPosition = () => {
         const longitude = coordinates.longitude;
         const [x, y] = lonLatToXY(longitude, latitude);
         context.fillStyle = "orangered";
-        context.beginPath();
-        context.arc(x, y, 2, 0, 2*Math.PI);
-        context.fill();
+        context.fillRect(x-1, y-1, 3, 3);
     }, (err) => {
         alert("データの取得に失敗しました。");
     }, {
