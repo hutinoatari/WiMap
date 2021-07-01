@@ -24,10 +24,10 @@ const lonLatToXY = (longitude, latitude) => {
 }
 
 const drawCurrentPosition = () => {
-    context.drawImage(japanMapImage, 0, 0);
+    context.drawImage(japanMapImage, 0, 0, mapConfig.width, mapConfig.height);
 
     if(!"geolocation" in navigator){
-        alert("このブラウザは未対応です。");
+        alert("このブラウザは位置情報に未対応です。");
         return;
     }
 
