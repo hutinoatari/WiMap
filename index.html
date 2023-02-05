@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="現在地をクソ精度の地図に表示するアプリです。">
-    <meta name="og:title" content="iMap">
-    <meta name="og:description" content="現在地をクソ精度の地図に表示するアプリです。">
+    <meta name="description" content="旅行経路をクソ精度の地図に表示するアプリです。">
+    <meta name="og:title" content="WiMap">
+    <meta name="og:description" content="旅行経路をクソ精度の地図に表示するアプリです。">
     <meta name="og:url" content="https://hutinoatari.github.io/iMap/">
     <meta name="og:image" content="https://hutinoatari.github.io/iMap/japanMap.jpg">
     <meta name="twitter:card" content="summary">
@@ -15,7 +15,7 @@
 </head>
 <body>
     <header>
-        <h1>iMap</h1>
+        <h1>WiMap</h1>
     </header>
 
     <main>
@@ -23,10 +23,12 @@
             <canvas id="screen"></canvas>
         </div>
         <div>
-            <button id="reloadButton">更新する</button>
-            <button id="downloadButton">ダウンロード</button>
+            <button id="addButton">現在地を取得する</button>
+            <button id="displayButton">経路を表示する</button>
+            <button id="downloadButton">画像をダウンロード</button>
         </div>
         <p>※このアプリは位置情報を利用します。</p>
+        <ol id="historyList"></ol>
     </main>
 
     <footer>
