@@ -1,11 +1,11 @@
 const mapConfig = {
-    leftLongitude: 127.2,
-    rightLongitude: 149.7,
-    topLatitude: 46.7,
-    underLatitude: 29.1,
+    leftLongitude: 127.5,
+    rightLongitude: 147.5,
+    topLatitude: 48.3,
+    underLatitude: 28.3,
 
-    width: 512,
-    height: 512,
+    width: 120,
+    height: 120,
 }
 
 const canvas = document.getElementById("screen");
@@ -15,7 +15,7 @@ const context = canvas.getContext("2d");
 const reloadButton = document.getElementById("reloadButton");
 const downloadButton = document.getElementById("downloadButton");
 const japanMapImage = new Image();
-japanMapImage.src = "japanMap.png";
+japanMapImage.src = "japanMap.jpg";
 
 const lonLatToXY = (longitude, latitude) => {
     const x = Math.round((longitude - mapConfig.leftLongitude) / (mapConfig.rightLongitude - mapConfig.leftLongitude) * mapConfig.width);
@@ -36,12 +36,9 @@ const drawCurrentPosition = () => {
         const latitude = coordinates.latitude;
         const longitude = coordinates.longitude;
         const [x, y] = lonLatToXY(longitude, latitude);
-        context.fillStyle = "red";
-        context.beginPath();
-        context.arc(x, y, 4, 0, Math.PI*2);
-        context.fill();
+        context.fillStyle = "orangered";
+        context.fillRect(x-1, y-1, 3, 3);
     }, (err) => {
-        console.error(err);
         alert("データの取得に失敗しました。");
     }, {
         timeout: 5000,
