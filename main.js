@@ -74,13 +74,13 @@ const drawJapanMap = () => {
 }
 
 const drawSinglePoint = (x, y) => {
-    context.fillStyle = "red";
+    context.fillStyle = "orange";
     context.fillRect(x-1, y-1, 3, 3);
 }
 
 const drawTrail = () => {
     drawJapanMap();
-    context.strokeStyle = "orange";
+    context.strokeStyle = "pink";
     context.lineWidth = 1;
     context.beginPath();
     for(let i=0; i<pointDatas.length; i+=1){
@@ -88,7 +88,7 @@ const drawTrail = () => {
         context.lineTo(pointDatas[i].x, pointDatas[i].y);
     }
     context.stroke();
-    context.fillStyle = "orange";
+    context.fillStyle = "pink";
     for(let i=0; i<pointDatas.length; i+=1){
         if(i == pointDatas.length-1) context.fillStyle = "red";
         context.fillRect(pointDatas[i].x-1, pointDatas[i].y-1, 3, 3);
