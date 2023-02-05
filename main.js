@@ -44,15 +44,14 @@ const lonLatToXY = (longitude, latitude) => {
     return [x, y];
 }
 
-const unixTimeToYYYYMMDDhhmmss = (unixTime) => {
+const unixTimeToYYYYMMDDhhmm = (unixTime) => {
     const d = new Date(unixTime);
     const year = d.getFullYear();
     const month = d.getMonth()+1;
     const date = d.getDate();
     const hour = d.getHours();
     const minute = d.getMinutes();
-    const second = d.getSeconds();
-    const str = `${year}/${month}/${date} ${(hour+"").padStart(2, "0")}:${(minute+"").padStart(2, "0")}:${(second+"").padStart(2, "0")}`;
+    const str = `${year}/${month}/${date} ${(hour+"").padStart(2, "0")}:${(minute+"").padStart(2, "0")}`;
     return str;
 }
 
@@ -63,7 +62,7 @@ const showList = () => {
         const button = document.createElement("button");
         button.addEventListener("click", () => deletePoint(i));
         button.textContent = "削除";
-        const text =document.createTextNode(unixTimeToYYYYMMDDhhmmss(pointData.time));
+        const text =document.createTextNode(unixTimeToYYYYMMDDhhmm(pointData.time));
         li.appendChild(button);
         li.appendChild(text);
         historyList.appendChild(li);
