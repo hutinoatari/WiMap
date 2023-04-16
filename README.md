@@ -1,1 +1,1 @@
-# iMap
+# WiMap
