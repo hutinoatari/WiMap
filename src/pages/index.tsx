@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { FC } from "react";
+import { useEffect, useState, FC } from "react";
+import Head from "next/head";
 import { Point, MapConfig } from "../types/data";
 import { unixTimeToYYYYMMDDhhmm, pointToX, pointToY } from "../util/util";
 import { japanMapConfig } from "../util/mapConfig";
@@ -100,6 +100,22 @@ const App: FC<{}> = () => {
     }, [pointList, mapConfig]);
     return (
         <>
+            <Head>
+                <title>WiMap</title>
+                <meta charSet="UTF-8" />
+                <meta
+                    name="description"
+                    content="現在地を繋いで地図上に経路を表示する。"
+                />
+                <meta name="viewport" content="width=device-width" />
+                <meta name="og:title" content="Wimap" />
+                <meta
+                    name="og:image"
+                    content="https://wimap-hutinoatari.vercel.app/ogp.png"
+                />
+                <meta name="twitter:card" content="summary_large_image" />
+            </Head>
+
             <header>
                 <h1>WiMap</h1>
             </header>

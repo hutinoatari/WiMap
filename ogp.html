@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="1200" height="630"></canvas>
+    <script>
+        const canvas = document.querySelector("canvas");
+        const context = canvas.getContext("2d");
+        context.fillStyle = "lightskyblue";
+        context.fillRect(0, 0, 1200, 630);
+        context.fillStyle = "lightgray";
+        //context.fillRect(285, 0, 630, 630);
+        context.fillStyle = "lightgreen";
+        context.strokeStyle = "black";
+        context.font = "180px monospace";
+        context.textAlign = "center";
+        context.textBaseline = "middle";
+        context.fillText("WiMap", 600, 315);
+        context.strokeText("WiMap", 600, 315);
+        context.font = "48px monospace";
+        context.fillText("旅行経路鋲打アプリ", 600, 315-90-48);
+        context.strokeText("旅行経路鋲打アプリ", 600, 315-90-48);
+    </script>
+</body>
+</html>
