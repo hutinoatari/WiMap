@@ -51,7 +51,7 @@ const tmpData = [
 
 const App: FC<{}> = () => {
     const [mapConfig, setMapConfig] = useState<MapConfig>(japanMapConfig);
-    const [pointList, setPointList] = useState<Point[]>([]);
+    const [pointList, setPointList] = useState<Point[]>(tmpData);
     const [mapImage, setMapImage] = useState<string | null>(null);
     useEffect(() => {
         const data = localStorage.getItem("pointList");
@@ -174,7 +174,7 @@ const App: FC<{}> = () => {
                     全部非表示
                 </button>
                 <ul>
-                    {pointList.reverse().map((point, i) => (
+                    {pointList.map((point, i) => (
                         <li key={`point-${point.unixTime}`}>
                             <input
                                 type={"checkbox"}
