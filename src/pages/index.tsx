@@ -4,54 +4,9 @@ import { Point, MapConfig } from "../types/data";
 import { unixTimeToYYYYMMDDhhmm, pointToX, pointToY } from "../util/util";
 import { japanMapConfig } from "../util/mapConfig";
 
-const tmpData = [
-    {
-        longitude: 139.623,
-        latitude: 35.466,
-        unixTime: 1681296887709,
-        check: true,
-    },
-    {
-        longitude: 136.882,
-        latitude: 35.171,
-        unixTime: 1681396887709,
-        check: true,
-    },
-    {
-        longitude: 135.501,
-        latitude: 34.734,
-        unixTime: 1681496887709,
-        check: true,
-    },
-    {
-        longitude: 134.047,
-        latitude: 34.351,
-        unixTime: 1681596887709,
-        check: true,
-    },
-    {
-        longitude: 132.729,
-        latitude: 33.862,
-        unixTime: 1681696887709,
-        check: true,
-    },
-    {
-        longitude: 132.475,
-        latitude: 34.862,
-        unixTime: 1681796887709,
-        check: true,
-    },
-    {
-        longitude: 130.421,
-        latitude: 33.59,
-        unixTime: 1681896887709,
-        check: true,
-    },
-];
-
 const App: FC<{}> = () => {
     const [mapConfig, setMapConfig] = useState<MapConfig>(japanMapConfig);
-    const [pointList, setPointList] = useState<Point[]>(tmpData);
+    const [pointList, setPointList] = useState<Point[]>([]);
     const [mapImage, setMapImage] = useState<string | null>(null);
     useEffect(() => {
         const data = localStorage.getItem("pointList");
@@ -96,7 +51,7 @@ const App: FC<{}> = () => {
                 3
             );
         }
-        setMapImage(canvas.toDataURL());
+        setMapImage(canvas.toDataURL("image/jpeg", 1));
     }, [pointList, mapConfig]);
     return (
         <>
@@ -108,7 +63,7 @@ const App: FC<{}> = () => {
                     content="現在地を繋いで地図上に経路を表示する。"
                 />
                 <meta name="viewport" content="width=device-width" />
-                <meta name="og:title" content="Wimap" />
+                <meta name="og:title" content="WiMap" />
                 <meta
                     name="og:image"
                     content="https://wimap-hutinoatari.vercel.app/ogp.png"
@@ -172,6 +127,16 @@ const App: FC<{}> = () => {
                     }
                 >
                     全部非表示
+                </button>
+                <button
+                    onClick={() => {
+                        const img = document.createElement("a");
+                        img.href = `data:img/jpeg;${mapImage}`;
+                        img.download = `WiMapImage${Date.now()}.jpg`;
+                        img.click();
+                    }}
+                >
+                    画像取得
                 </button>
                 <ul>
                     {pointList.map((point, i) => (
