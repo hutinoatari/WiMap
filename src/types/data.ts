@@ -6,6 +6,7 @@ export type Point = {
 };
 
 export type MapConfig = {
+    title: string;
     leftLongitude: number;
     rightLongitude: number;
     topLatitude: number;
