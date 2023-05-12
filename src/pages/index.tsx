@@ -26,7 +26,7 @@ const App: FC<{}> = () => {
         mapConfig.drawMap(canvas);
         const context = canvas.getContext("2d");
         context.strokeStyle = "darkorange";
-        context.lineWidth = 1;
+        context.lineWidth = mapConfig.lineSize;
         context.beginPath();
         for (let i = 0; i < newPointList.length; i += 1) {
             if (i == 0) {
@@ -46,10 +46,10 @@ const App: FC<{}> = () => {
         for (let i = 0; i < newPointList.length; i += 1) {
             if (i == newPointList.length - 1) context.fillStyle = "red";
             context.fillRect(
-                pointToX(newPointList[i], mapConfig) - 1,
-                pointToY(newPointList[i], mapConfig) - 1,
-                3,
-                3
+                pointToX(newPointList[i], mapConfig) - mapConfig.lineSize,
+                pointToY(newPointList[i], mapConfig) - mapConfig.lineSize,
+                mapConfig.lineSize * 2 + 1,
+                mapConfig.lineSize * 2 + 1
             );
         }
         setMapImage(canvas.toDataURL("image/jpeg", 1));

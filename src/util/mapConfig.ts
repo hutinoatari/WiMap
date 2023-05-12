@@ -6,43 +6,44 @@ const japanMapConfig: MapConfig = {
     rightLongitude: 147.5,
     topLatitude: 48.3,
     underLatitude: 28.3,
-    width: 120,
-    height: 120,
+    width: 480,
+    height: 480,
+    lineSize: 4,
     drawMap: (canvas) => {
         const context = canvas.getContext("2d");
         context.fillStyle = "lightskyblue";
-        context.fillRect(0, 0, 120, 120);
+        context.fillRect(0, 0, 480, 480);
         context.fillStyle = "lightgreen";
         context.beginPath();
-        context.moveTo(85, 16);
-        context.lineTo(108, 28);
-        context.lineTo(94, 38);
-        context.lineTo(76, 33);
+        context.moveTo(340, 64);
+        context.lineTo(432, 112);
+        context.lineTo(376, 152);
+        context.lineTo(304, 132);
         context.closePath();
         context.fill();
         context.beginPath();
-        context.moveTo(75, 43);
-        context.lineTo(83, 43);
-        context.lineTo(78, 76);
-        context.lineTo(46, 87);
-        context.lineTo(43, 81);
-        context.lineTo(25, 85);
-        context.lineTo(22, 81);
-        context.lineTo(63, 66);
+        context.moveTo(300, 172);
+        context.lineTo(332, 172);
+        context.lineTo(312, 304);
+        context.lineTo(184, 348);
+        context.lineTo(172, 324);
+        context.lineTo(100, 340);
+        context.lineTo(88, 324);
+        context.lineTo(252, 264);
         context.closePath();
         context.fill();
         context.beginPath();
-        context.moveTo(40, 83);
-        context.lineTo(42, 88);
-        context.lineTo(30, 91);
-        context.lineTo(30, 87);
+        context.moveTo(160, 332);
+        context.lineTo(168, 352);
+        context.lineTo(120, 364);
+        context.lineTo(120, 348);
         context.closePath();
         context.fill();
         context.beginPath();
-        context.moveTo(19, 86);
-        context.lineTo(27, 92);
-        context.lineTo(19, 103);
-        context.lineTo(12, 90);
+        context.moveTo(76, 344);
+        context.lineTo(108, 368);
+        context.lineTo(76, 412);
+        context.lineTo(48, 360);
         context.closePath();
         context.fill();
     },
@@ -55,6 +56,7 @@ const kantoMapConfig: MapConfig = {
     underLatitude: 34.6,
     width: 60,
     height: 60,
+    lineSize: 1,
     drawMap: (canvas) => {
         const context = canvas.getContext("2d");
         context.fillStyle = "lightskyblue";

@@ -13,5 +13,6 @@ export type MapConfig = {
     underLatitude: number;
     width: number;
     height: number;
+    lineSize: number;
     drawMap: (canvas: HTMLCanvasElement) => void;
 };
