@@ -5,10 +5,9 @@ import { unixTimeToYYYYMMDDhhmm, pointToX, pointToY } from "../util/util";
 import { japanMapConfig, kantoMapConfig } from "../util/mapConfig";
 
 const App: FC<{}> = () => {
-    const [mapConfig, setMapConfig] = useState<MapConfig>(japanMapConfig);
+    const mapConfig = japanMapConfig;
     const [pointList, setPointList] = useState<Point[]>([]);
     const [mapImage, setMapImage] = useState<string | null>(null);
-    const mapConfigList = [japanMapConfig, kantoMapConfig];
     useEffect(() => {
         const data = localStorage.getItem("pointList");
         if (!data) return;
@@ -77,20 +76,6 @@ const App: FC<{}> = () => {
             </header>
 
             <main>
-                <select
-                    value={mapConfig.title}
-                    onChange={(e) =>
-                        setMapConfig(
-                            mapConfigList.find(
-                                (m) => m.title === e.target.value
-                            )
-                        )
-                    }
-                >
-                    {mapConfigList.map((m) => (
-                        <option value={m.title}>{m.title}</option>
-                    ))}
-                </select>
                 <div>{mapImage && <img src={mapImage} />}</div>
                 <button
                     onClick={() => {
